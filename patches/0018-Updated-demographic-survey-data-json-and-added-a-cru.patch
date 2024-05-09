@@ -1,0 +1,282 @@
+From b33db317523b943d0be84e5a4e6e1926f4feba39 Mon Sep 17 00:00:00 2001
+From: Andrew <andrew76280@gmail.com>
+Date: Thu, 21 Mar 2024 12:57:44 -0400
+Subject: [PATCH 18/42] Updated demographic survey data json, and added a crud
+ for the demographic survey
+
+---
+ data/demographicsurvey.json                  | 211 ++++++++++---------
+ upload_collect_demographicSurveyQuestions.py |  40 ++++
+ 2 files changed, 149 insertions(+), 102 deletions(-)
+ create mode 100644 upload_collect_demographicSurveyQuestions.py
+
+diff --git a/data/demographicsurvey.json b/data/demographicsurvey.json
+index 37981ca..1efea73 100644
+--- a/data/demographicsurvey.json
++++ b/data/demographicsurvey.json
+@@ -1,106 +1,113 @@
+ {
+-    "demographicSurveyQuestions": {
+-      "Age": {
+-        "question": "What is your age group?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Under 18",
+-          "b": "18-24",
+-          "c": "25-34",
+-          "d": "35-44",
+-          "e": "45-54",
+-          "f": "55-64",
+-          "g": "65 or older"
+-        }
+-      },
+-      "Gender": {
+-        "question": "What is your gender?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Male",
+-          "b": "Female",
+-          "c": "Other",
+-          "d": "Prefer not to say"
+-        }
+-      },
+-      "SelfRating": {
+-        "question": "On a scale of 0-10, how would you rate yourself?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "0": "0",
+-          "1": "1",
+-          "2": "2",
+-          "3": "3",
+-          "4": "4",
+-          "5": "5",
+-          "6": "6",
+-          "7": "7",
+-          "8": "8",
+-          "9": "9",
+-          "10": "10"
+-        }
+-      },
+-      "Employment": {
+-        "question": "What is your current employment status?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Employed",
+-          "b": "Unemployed",
+-          "c": "Student",
+-          "d": "Retired",
+-          "e": "Self-employed",
+-          "f": "Prefer not to say"
+-        }
+-      },
+-      "Ethnicity": {
+-        "question": "What is your ethnicity?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "White",
+-          "b": "Black or African American",
+-          "c": "Asian",
+-          "d": "Hispanic or Latino",
+-          "e": "Native American or Alaska Native",
+-          "f": "Middle Eastern or North African",
+-          "g": "Other",
+-          "h": "Prefer not to say"
+-        }
+-      },
+-      "Education": {
+-        "question": "What is your highest level of education?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Less than high school",
+-          "b": "High school graduate",
+-          "c": "Some college",
+-          "d": "Associate degree",
+-          "e": "Bachelor's degree",
+-          "f": "Graduate or professional degree",
+-          "g": "Prefer not to say"
+-        }
+-      },
+-      "Residence": {
+-        "question": "Where do you live?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Urban",
+-          "b": "Suburban",
+-          "c": "Rural",
+-          "d": "Prefer not to say"
+-        }
+-      },
+-      "MaritalStatus": {
+-        "question": "What is your marital status?",
+-        "questionType": "radiogroup",
+-        "choices": {
+-          "a": "Single",
+-          "b": "Married",
+-          "c": "Divorced",
+-          "d": "Widowed",
+-          "e": "In a domestic partnership",
+-          "f": "Prefer not to say"
+-        }
++  "demographicSurveyQuestions": {
++    "Age": {
++      "question": "What is your age group?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Under 18",
++        "b": "18-24",
++        "c": "25-34",
++        "d": "35-44",
++        "e": "45-54",
++        "f": "55-64",
++        "g": "65 or older"
++      }
++    },
++    "Gender": {
++      "question": "What is your gender?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Male",
++        "b": "Female",
++        "c": "Other",
++        "d": "Prefer not to say"
++      }
++    },
++    "SelfRating": {
++      "question": "On a scale of 0-10, how would you rate yourself?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "0": "0",
++        "1": "1",
++        "2": "2",
++        "3": "3",
++        "4": "4",
++        "5": "5",
++        "6": "6",
++        "7": "7",
++        "8": "8",
++        "9": "9",
++        "10": "10"
++      }
++    },
++    "Employment": {
++      "question": "What is your current employment status?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Employed",
++        "b": "Unemployed",
++        "c": "Student",
++        "d": "Retired",
++        "e": "Self-employed",
++        "f": "Prefer not to say"
++      }
++    },
++    "Ethnicity": {
++      "question": "What is your ethnicity?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "White",
++        "b": "Black or African American",
++        "c": "Asian",
++        "d": "Hispanic or Latino",
++        "e": "Native American or Alaska Native",
++        "f": "Middle Eastern or North African",
++        "g": "Other",
++        "h": "Prefer not to say"
++      }
++    },
++    "Education": {
++      "question": "What is your highest level of education?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Less than high school",
++        "b": "High school graduate",
++        "c": "Some college",
++        "d": "Associate degree",
++        "e": "Bachelor's degree",
++        "f": "Graduate or professional degree",
++        "g": "Prefer not to say"
++      }
++    },
++    "Residence": {
++      "question": "Where do you live?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Urban",
++        "b": "Suburban",
++        "c": "Rural",
++        "d": "Prefer not to say"
++      }
++    },
++    "MaritalStatus": {
++      "question": "What is your marital status?",
++      "questionType": "radiogroup",
++      "isRequired": true,
++      "choices": {
++        "a": "Single",
++        "b": "Married",
++        "c": "Divorced",
++        "d": "Widowed",
++        "e": "In a domestic partnership",
++        "f": "Prefer not to say"
+       }
+     }
+   }
+-  
+\ No newline at end of file
++}
+diff --git a/upload_collect_demographicSurveyQuestions.py b/upload_collect_demographicSurveyQuestions.py
+new file mode 100644
+index 0000000..75a94b3
+--- /dev/null
++++ b/upload_collect_demographicSurveyQuestions.py
+@@ -0,0 +1,40 @@
++import re
++import firebase_admin
++from firebase_admin import credentials, firestore
++import json
++
++cred = credentials.Certificate("serviceAccountKey.json")
++firebase_admin.initialize_app(cred)
++db = firestore.client()
++
++def to_snake_case(text):
++    text = re.sub(r"[\s\-]+", " ", text)
++    components = text.split(" ")
++    return "_".join(x.lower() for x in components)
++
++def to_camel_case(text):
++    text = re.sub(r"[\-\.\s]", "_", text)
++    components = text.split("_")
++    return components[0] + "".join(x.title() for x in components[1:])
++
++with open("data/demographicsurvey.json") as f:
++    data = json.load(f)
++
++for category, questions in data.items():
++    for question_id, question_details in questions.items():
++        snake_case_question_id = to_snake_case(question_id)
++        doc_ref = db.collection("demographicSurveyQuestions").document(snake_case_question_id)
++
++        doc_data = {
++            "isRequired": True  # Set the isRequired property for each question
++        }
++
++        # This only adds it if it exists, if not, it skips it
++        if question_details.get("question"):
++            doc_data["question"] = question_details["question"]
++        if question_details.get("choices"):
++            doc_data["choices"] = question_details["choices"]
++        if question_details.get("questionType"):  # Ensuring the questionType is included if provided
++            doc_data["questionType"] = question_details["questionType"]
++
++        doc_ref.set(doc_data)
+-- 
+2.38.1.windows.1
+

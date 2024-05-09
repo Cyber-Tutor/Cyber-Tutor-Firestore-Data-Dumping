@@ -1,0 +1,29 @@
+From 3bb718682e961a18ce75a9d2d1bafa556e410b4f Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sat, 16 Mar 2024 21:05:11 -0400
+Subject: [PATCH 13/42] chore: Added chroma_db/ for when switching between
+ branches
+
+- Present on main, but not here.
+---
+ .gitignore | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/.gitignore b/.gitignore
+index e791963..981118f 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -14,4 +14,7 @@ venv.bak/
+ 
+ # Firebase and Data
+ data.json
+-serviceAccountKey.json
+\ No newline at end of file
++serviceAccountKey.json
++
++# Sean's stuff
++chroma_db/
+\ No newline at end of file
+-- 
+2.38.1.windows.1
+

@@ -1,0 +1,31 @@
+From 6ff7240aa969f3e268d1b45ec3d83a0a9e93f9f8 Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Thu, 9 May 2024 16:50:34 -0400
+Subject: [PATCH 37/42] feat: JSON editor for quizQuestions to add
+ isHumanWritten
+
+- I will make this more intuitive later, but for the time being, this is what we got.
+---
+ json_editor_2.py | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+ create mode 100644 json_editor_2.py
+
+diff --git a/json_editor_2.py b/json_editor_2.py
+new file mode 100644
+index 0000000..2b6dacd
+--- /dev/null
++++ b/json_editor_2.py
+@@ -0,0 +1,10 @@
++import json
++
++with open("quizQuestions.json", "r") as file:
++    data = json.load(file)
++
++for question in data["quizQuestions"]:
++    question["isHumanWritten"] = 0
++
++with open("quizQuestions_updated.json", "w") as file:
++    json.dump(data, file, indent=4)
+-- 
+2.38.1.windows.1
+

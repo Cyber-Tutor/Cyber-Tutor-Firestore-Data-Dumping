@@ -1,0 +1,367 @@
+From 67e6c8887e680221a6b5ce19ad7e35daaf2ef652 Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sat, 9 Mar 2024 16:59:23 -0500
+Subject: [PATCH 06/42] Refactor: Document IDs no longer randomly generated
+
+- Added 2 functions, one for camel case, one for snake case. We decided on snake case.
+- Cleaned up "quiz:_" to be "quiz_" using clean_quiz_title function, which simply removes the ":" character.
+- Added the topics.json so that everyone has access to it. Given that it has no sensitive information, it is okay to have on our repository.
+---
+ data/topics.json    | 236 ++++++++++++++++++++++++++++++++++++++++++++
+ firebase_convert.py |  73 +++++++-------
+ 2 files changed, 271 insertions(+), 38 deletions(-)
+ create mode 100644 data/topics.json
+
+diff --git a/data/topics.json b/data/topics.json
+new file mode 100644
+index 0000000..92c16bf
+--- /dev/null
++++ b/data/topics.json
+@@ -0,0 +1,236 @@
++{
++  "topics": [
++    {
++      "topicTitle": "Two-Factor Authentication",
++      "topicDescription": "A course that explores the concept of Two-Factor Authentication.",
++      "order": 1,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to 2FA",
++          "chapterDescription": "An overview of the concept of Two-Factor Authentication.",
++          "chapterType": "text",
++          "controlGroupContent": "An introduction to Two-Factor Authentication (2FA) offers a fundamental understanding of this essential security measure in today's digital landscape. Two-Factor Authentication enhances account security by requiring users to provide two forms of identification before granting access, typically something they know (like a password) and something they have (such as a smartphone or hardware token). This introductory overview delves into the significance of 2FA in safeguarding sensitive information from unauthorized access and mitigating the risks associated with password breaches and phishing attacks. By providing a layered defense mechanism, 2FA adds an extra layer of protection to online accounts, bolstering security measures for individuals and organizations alike in an increasingly interconnected world.",
++          "controlGroupImageURLs": [
++            "https://assets.f-secure.com/i/illustrations/what-is-two-factor-authentication.png"
++          ],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 1
++        },
++        {
++          "chapterTitle": "How Two-Factor Authentication Works",
++          "chapterDescription": "A detailed explanation of how Two-Factor Authentication works.",
++          "chapterType": "video",
++          "controlGroupContent": "https://www.youtube.com/embed/AMOtB7XkTT4",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 2
++        },
++        {
++          "chapterTitle": "Quiz 1: Chapters 1-2",
++          "chapterDescription": "A quiz to test your knowledge of Two-Factor Authentication.",
++          "chapterType": "assessment",
++          "controlGroupContent": "This is the control group content for chapter 2.",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 3
++        },
++        {
++          "chapterTitle": "Types of Two-Factor Authentication",
++          "chapterDescription": "An exploration of the different types of Two-Factor Authentication.",
++          "chapterType": "text",
++          "controlGroupContent": "This is the control group content for chapter 3.",
++          "controlGroupImageURLs": [
++            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKfz6_7UfsGgi64BzglQFvhtIol8H0Gr4_bg&usqp=CAU"
++          ],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 4
++        },
++        {
++          "chapterTitle": "Quiz 2: Chapter 3",
++          "chapterDescription": "A quiz to test your knowledge of Two-Factor Authentication.",
++          "chapterType": "assessment",
++          "controlGroupContent": "This is the control group content for chapter 4.",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 5
++        },
++        {
++          "chapterTitle": "Setting Up Two-Factor Authentication",
++          "chapterDescription": "A guide to setting up Two-Factor Authentication on various platforms.",
++          "chapterType": "text",
++          "controlGroupContent": "This is the control group content for chapter 5.",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 6
++        }
++      ]
++    },
++    {
++      "topicTitle": "Phishing",
++      "topicDescription": "A comprehensive guide to understanding and preventing phishing attacks.",
++      "order": 2,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Phishing",
++          "chapterDescription": "An overview of the concept of phishing and its impact.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 1
++        },
++        {
++          "chapterTitle": "How Phishing Works",
++          "chapterDescription": "A detailed explanation of how phishing attacks are carried out.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 2
++        },
++        {
++          "chapterTitle": "Quiz 1: Chapters 1-2",
++          "chapterDescription": "A quiz to test your knowledge of phishing attacks.",
++          "chapterType": "assessment",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 3
++        },
++        {
++          "chapterTitle": "Types of Phishing Attacks",
++          "chapterDescription": "An exploration of the different types of phishing attacks.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 4
++        },
++        {
++          "chapterTitle": "Quiz 2: Chapter 3",
++          "chapterDescription": "A quiz to test your knowledge of phishing attacks.",
++          "chapterType": "assessment",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 5
++        },
++        {
++          "chapterTitle": "Preventing Phishing Attacks",
++          "chapterDescription": "A guide to preventing and protecting against phishing attacks.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 6
++        }
++      ]
++    },
++    {
++      "topicTitle": "Password Security",
++      "topicDescription": "Learn about the importance of strong passwords and how to create them.",
++      "order": 3,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Password Security",
++          "chapterDescription": "An overview of the importance of strong passwords.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 1
++        },
++        {
++          "chapterTitle": "Creating Strong Passwords",
++          "chapterDescription": "Tips and techniques for creating strong and secure passwords.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 2
++        },
++        {
++          "chapterTitle": "Quiz: Password Security",
++          "chapterDescription": "A quiz to test your knowledge of password security best practices.",
++          "chapterType": "assessment",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 3
++        },
++        {
++          "chapterTitle": "Password Managers",
++          "chapterDescription": "An exploration of password managers and their benefits.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 4
++        }
++      ]
++    },
++    {
++      "topicTitle": "Online Privacy",
++      "topicDescription": "A course that delves into the concept of online privacy and how to protect it.",
++      "order": 4,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Online Privacy",
++          "chapterDescription": "An overview of the concept of online privacy and its importance.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 1
++        },
++        {
++          "chapterTitle": "Protecting Your Online Privacy",
++          "chapterDescription": "Best practices for protecting your online privacy and personal information.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 2
++        },
++        {
++          "chapterTitle": "Quiz 1: Chapters 1-2",
++          "chapterDescription": "A quiz to test your knowledge of online privacy.",
++          "chapterType": "assessment",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 3
++        },
++        {
++          "chapterTitle": "Privacy Settings and Tools",
++          "chapterDescription": "A guide to adjusting privacy settings and using privacy tools on various platforms.",
++          "chapterType": "text",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 4
++        }
++      ]
++    }
++  ]
++}
+diff --git a/firebase_convert.py b/firebase_convert.py
+index f4149f9..c07569b 100644
+--- a/firebase_convert.py
++++ b/firebase_convert.py
+@@ -1,62 +1,58 @@
++import re
+ import firebase_admin
+ from firebase_admin import credentials, firestore
+ import json
+ 
++# Initialize Firebase
+ cred = credentials.Certificate("serviceAccountKey.json")
+ firebase_admin.initialize_app(cred)
+ db = firestore.client()
+ 
+ 
+-def extract_chapter_info(chapters):
+-    extracted_info = {}
+-    for chapter_id, chapter_details in chapters.items():
+-        extracted_info[chapter_id] = {
+-            "chapterType": chapter_details["chapterType"],
+-            "chapterDescription": chapter_details["chapterDescription"],
+-            "chapterTitle": chapter_details["chapterTitle"],
+-        }
+-        control_group_content = {}
+-        experimental_group_content = {}
+-        for subchapter_id, subchapter_details in chapter_details.get(
+-            "controlGroup", {}
+-        ).items():
+-            control_group_content[subchapter_id] = subchapter_details.get(
+-                "chapterContent", ""
+-            )
+-        for subchapter_id, subchapter_details in chapter_details.get(
+-            "experimentalGroup", {}
+-        ).items():
+-            experimental_group_content[subchapter_id] = subchapter_details.get(
+-                "chapterContent", ""
+-            )
+-        extracted_info[chapter_id]["controlGroupContent"] = control_group_content
+-        extracted_info[chapter_id][
+-            "experimentalGroupContent"
+-        ] = experimental_group_content
+-    return extracted_info
++def to_snake_case(text):
++    text = re.sub(r"[\s\-]+", " ", text)
++    components = text.split(" ")
++    return "_".join(x.lower() for x in components)
+ 
+ 
+-with open("data.json") as f:
+-    data = json.load(f)
++def to_camel_case(text):
++    text = re.sub(r"[\-\.\s]", "_", text)
++    components = text.split("_")
++    return components[0] + "".join(x.title() for x in components[1:])
++
++
++def clean_quiz_title(title):
++    if "Quiz" in title:
++        return title.replace(":", "")
++    return title
+ 
+ 
+-for topic_id, topic_details in enumerate(data["topics"]):
+-    topic_ref = db.collection("topics").document(str(topic_id))
++with open("data/topics.json") as f:
++    data = json.load(f)
++
++for topic_details in data["topics"]:
++    topic_id = to_snake_case(topic_details["topicTitle"])
++    topic_ref = db.collection("topics").document(topic_id)
+     topic_ref.set(
+         {
+-            "topicDescription": topic_details["description"],
+-            "topicTitle": topic_details["title"],
++            "topicDescription": topic_details["topicDescription"],
++            "topicTitle": topic_details["topicTitle"],
++            "order": topic_details["order"],
+         }
+     )
+ 
+     chapters_ref = topic_ref.collection("chapters")
+-    for chapter_id, chapter_details in enumerate(topic_details["chapters"]):
+-        chapter_ref = chapters_ref.document(str(chapter_id))
++    for chapter_details in topic_details["chapters"]:
++        chapter_details["chapterTitle"] = clean_quiz_title(
++            chapter_details["chapterTitle"]
++        )
++        chapter_id = to_snake_case(chapter_details["chapterTitle"])
++        chapter_ref = chapters_ref.document(chapter_id)
+         chapter_ref.set(
+             {
+-                "chapterType": chapter_details["type"],
+-                "chapterDescription": chapter_details["description"],
+-                "chapterTitle": chapter_details["title"],
++                "chapterType": chapter_details["chapterType"],
++                "chapterDescription": chapter_details["chapterDescription"],
++                "chapterTitle": chapter_details["chapterTitle"],
+                 "controlGroupContent": chapter_details["controlGroupContent"],
+                 "experimentalGroupContent": chapter_details["experimentalGroupContent"],
+                 "controlGroupImageURLs": chapter_details.get(
+@@ -65,5 +61,6 @@ for topic_id, topic_details in enumerate(data["topics"]):
+                 "experimentalGroupImageURLs": chapter_details.get(
+                     "experimentalGroupImageURLs", []
+                 ),
++                "order": chapter_details["order"],
+             }
+         )
+-- 
+2.38.1.windows.1
+

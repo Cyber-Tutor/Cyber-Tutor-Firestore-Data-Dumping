@@ -1,0 +1,113 @@
+From 02b4db658fa0aa49a89cb5c112ee6976ea9defd9 Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sun, 10 Mar 2024 14:05:24 -0400
+Subject: [PATCH 08/42] Refactor: Adjusted chapters to fit structure
+
+- Password Security and Online Privacy didn't follow the proposed structure in my initial finalization. Double-checked everything, and this is what we want.
+---
+ data/topics2.json | 40 +++++++++++++++++++++++++---------------
+ 1 file changed, 25 insertions(+), 15 deletions(-)
+
+diff --git a/data/topics2.json b/data/topics2.json
+index 28d9ebb..f91ef26 100644
+--- a/data/topics2.json
++++ b/data/topics2.json
+@@ -82,7 +82,7 @@
+       "order": 3,
+       "chapters": [
+         {
+-          "chapterTitle": "Introduction to Password Security",
++          "chapterTitle": "Importance of Strong Passwords",
+           "chapterDescription": "An overview of the importance of strong passwords.",
+           "chapterType": "text",
+           "controlGroupContent": "",
+@@ -91,6 +91,16 @@
+           "experimentalGroupImageURLs": [],
+           "order": 1
+         },
++        {
++          "chapterTitle": "Testing Password Security Knowledge",
++          "chapterDescription": "A quiz to test your knowledge of password security best practices.",
++          "chapterType": "assessment",
++          "controlGroupContent": "",
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": "",
++          "experimentalGroupImageURLs": [],
++          "order": 2
++        },
+         {
+           "chapterTitle": "Creating Strong Passwords",
+           "chapterDescription": "Tips and techniques for creating strong and secure passwords.",
+@@ -99,17 +109,17 @@
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+           "experimentalGroupImageURLs": [],
+-          "order": 2
++          "order": 3
+         },
+         {
+-          "chapterTitle": "Password Security",
+-          "chapterDescription": "A quiz to test your knowledge of password security best practices.",
++          "chapterTitle": "Assessing Password Creation Skills",
++          "chapterDescription": "A quiz to assess password creation skills.",
+           "chapterType": "assessment",
+           "controlGroupContent": "",
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+           "experimentalGroupImageURLs": [],
+-          "order": 3
++          "order": 4
+         },
+         {
+           "chapterTitle": "Implementing Password Management Solutions",
+@@ -119,7 +129,7 @@
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+           "experimentalGroupImageURLs": [],
+-          "order": 4
++          "order": 5
+         }
+       ]
+     },
+@@ -139,9 +149,9 @@
+           "order": 1
+         },
+         {
+-          "chapterTitle": "Protecting Your Online Privacy",
+-          "chapterDescription": "Best practices for protecting your online privacy and personal information.",
+-          "chapterType": "text",
++          "chapterTitle": "Evaluating Understanding of Online Privacy",
++          "chapterDescription": "A quiz to test your knowledge of online privacy.",
++          "chapterType": "assessment",
+           "controlGroupContent": "",
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+@@ -149,9 +159,9 @@
+           "order": 2
+         },
+         {
+-          "chapterTitle": "Evaluating Understanding of Online Privacy",
+-          "chapterDescription": "A quiz to test your knowledge of online privacy.",
+-          "chapterType": "assessment",
++          "chapterTitle": "Protecting Online Privacy Measures",
++          "chapterDescription": "Best practices for protecting your online privacy and personal information.",
++          "chapterType": "text",
+           "controlGroupContent": "",
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+@@ -159,9 +169,9 @@
+           "order": 3
+         },
+         {
+-          "chapterTitle": "Privacy Settings and Tools",
+-          "chapterDescription": "A guide to adjusting privacy settings and using privacy tools on various platforms.",
+-          "chapterType": "text",
++          "chapterTitle": "Assessing Privacy Protection Knowledge",
++          "chapterDescription": "A quiz to assess privacy protection knowledge.",
++          "chapterType": "assessment",
+           "controlGroupContent": "",
+           "controlGroupImageURLs": [],
+           "experimentalGroupContent": "",
+-- 
+2.38.1.windows.1
+

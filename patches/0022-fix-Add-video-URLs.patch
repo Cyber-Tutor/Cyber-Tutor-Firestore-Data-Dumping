@@ -1,0 +1,25 @@
+From 91e88b7bd1957fcd20ba90fc0fbb101f7ab52db8 Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sat, 30 Mar 2024 02:13:50 -0400
+Subject: [PATCH 22/42] fix: Add video URLs
+
+---
+ upload_collection_topics.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/upload_collection_topics.py b/upload_collection_topics.py
+index 01140e7..5331f1f 100644
+--- a/upload_collection_topics.py
++++ b/upload_collection_topics.py
+@@ -44,6 +44,8 @@ def upload_data(file_path):
+                     "chapterTitle",
+                     "controlGroupContent",
+                     "experimentalGroupContent",
++                    "controlGroupVideoURLs",
++                    "experimentalGroupVideoURLs",
+                     "controlGroupImageURLs",
+                     "experimentalGroupImageURLs",
+                     "order",
+-- 
+2.38.1.windows.1
+

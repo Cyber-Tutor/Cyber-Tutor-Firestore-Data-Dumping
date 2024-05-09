@@ -1,0 +1,39 @@
+From 0f82972870164829d32cb2f396d867b847d1630b Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sat, 6 Apr 2024 20:42:30 -0400
+Subject: [PATCH 27/42] refactor: Upload to topics2 collection for testing
+
+---
+ upload_collection_topics.py | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/upload_collection_topics.py b/upload_collection_topics.py
+index 5331f1f..dabeabd 100644
+--- a/upload_collection_topics.py
++++ b/upload_collection_topics.py
+@@ -3,7 +3,6 @@ import json
+ import firebase_admin
+ from firebase_admin import credentials, firestore
+ 
+-# Initialize Firebase
+ cred = credentials.Certificate("serviceAccountKey.json")
+ firebase_admin.initialize_app(cred)
+ db = firestore.client()
+@@ -20,7 +19,7 @@ def upload_data(file_path):
+ 
+     for topic_details in data["topics"]:
+         topic_id = to_snake_case(topic_details["topicTitle"])
+-        topic_ref = db.collection("topics").document(topic_id)
++        topic_ref = db.collection("topics2").document(topic_id)
+         topic_ref.set(
+             {
+                 "topicDescription": topic_details["topicDescription"],
+@@ -57,4 +56,4 @@ def upload_data(file_path):
+ 
+ 
+ if __name__ == "__main__":
+-    upload_data("data/topics6.json")
++    upload_data("topics.json")
+-- 
+2.38.1.windows.1
+

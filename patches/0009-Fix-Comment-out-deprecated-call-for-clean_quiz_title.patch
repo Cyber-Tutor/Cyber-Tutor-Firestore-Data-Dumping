@@ -1,0 +1,29 @@
+From 23499bec42399da8185f6261e986f3a4b8f1213c Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Sun, 10 Mar 2024 14:06:04 -0400
+Subject: [PATCH 09/42] Fix: Comment out deprecated call for clean_quiz_title
+
+---
+ firebase_convert.py | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/firebase_convert.py b/firebase_convert.py
+index 403c3bc..bfb532e 100644
+--- a/firebase_convert.py
++++ b/firebase_convert.py
+@@ -43,9 +43,9 @@ for topic_details in data["topics"]:
+ 
+     chapters_ref = topic_ref.collection("chapters")
+     for chapter_details in topic_details["chapters"]:
+-        chapter_details["chapterTitle"] = clean_quiz_title(
+-            chapter_details["chapterTitle"]
+-        )
++        # chapter_details["chapterTitle"] = clean_quiz_title(
++        #     chapter_details["chapterTitle"]
++        # )
+         chapter_id = to_snake_case(chapter_details["chapterTitle"])
+         chapter_ref = chapters_ref.document(chapter_id)
+         chapter_ref.set(
+-- 
+2.38.1.windows.1
+

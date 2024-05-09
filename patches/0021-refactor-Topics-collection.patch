@@ -1,0 +1,517 @@
+From f068e87d36b175b86f71800bb54c15a4e13066dd Mon Sep 17 00:00:00 2001
+From: Matthew Quijano <mq022002@gmail.com>
+Date: Fri, 29 Mar 2024 20:14:13 -0400
+Subject: [PATCH 21/42] refactor: Topics collection
+
+- Added difficulty levels to content and videos.
+- Made images an array.
+---
+ data/topics6.json           | 386 ++++++++++++++++++++++++++++++++++++
+ upload_collection_topics.py |  87 ++++----
+ 2 files changed, 426 insertions(+), 47 deletions(-)
+ create mode 100644 data/topics6.json
+
+diff --git a/data/topics6.json b/data/topics6.json
+new file mode 100644
+index 0000000..cb80bdd
+--- /dev/null
++++ b/data/topics6.json
+@@ -0,0 +1,386 @@
++{
++  "topics": [
++    {
++      "topicTitle": "Two-Factor Authentication",
++      "topicDescription": "A course that explores the concept of Two-Factor Authentication.",
++      "order": 1,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to 2FA",
++          "chapterDescription": "An overview of the concept of Two-Factor Authentication.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 2,
++          "proficiency": 0
++        },
++        {
++          "chapterTitle": "Understanding 2FA",
++          "chapterDescription": "A quiz to test your knowledge of Two-Factor Authentication.",
++          "chapterType": "assessment",
++          "order": 3,
++          "proficiency": 1
++        },
++        {
++          "chapterTitle": "Implementing 2FA Solutions",
++          "chapterDescription": "Guidelines for implementing Two-Factor Authentication solutions.",
++          "chapterType": "video",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 1,
++          "proficiency": 0
++        }
++      ]
++    },
++    {
++      "topicTitle": "Phishing",
++      "topicDescription": "A comprehensive guide to understanding and preventing phishing attacks.",
++      "order": 2,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Phishing",
++          "chapterDescription": "An overview of the concept of phishing and its impact.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 2,
++          "proficiency": 0
++        },
++        {
++          "chapterTitle": "Assessing Phishing Knowledge",
++          "chapterDescription": "A quiz to test your knowledge of phishing attacks.",
++          "chapterType": "assessment",
++          "order": 3,
++          "proficiency": 1
++        },
++        {
++          "chapterTitle": "Recognizing and Reporting Phishing Attempts",
++          "chapterDescription": "Strategies for recognizing and reporting phishing attempts.",
++          "chapterType": "video",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 1,
++          "proficiency": 0
++        }
++      ]
++    },
++    {
++      "topicTitle": "Password Security",
++      "topicDescription": "Learn about the importance of strong passwords and how to create them.",
++      "order": 3,
++      "chapters": [
++        {
++          "chapterTitle": "Importance of Strong Passwords",
++          "chapterDescription": "An overview of the importance of strong passwords.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 2,
++          "proficiency": 0
++        },
++        {
++          "chapterTitle": "Testing Password Security Knowledge",
++          "chapterDescription": "A quiz to test your knowledge of password security best practices.",
++          "chapterType": "assessment",
++          "order": 3,
++          "proficiency": 1
++        },
++        {
++          "chapterTitle": "Creating Strong Passwords",
++          "chapterDescription": "Tips and techniques for creating strong and secure passwords.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 4,
++          "proficiency": 2
++        },
++        {
++          "chapterTitle": "Assessing Password Creation Skills",
++          "chapterDescription": "A quiz to assess password creation skills.",
++          "chapterType": "assessment",
++          "order": 5,
++          "proficiency": 3
++        },
++        {
++          "chapterTitle": "Implementing Password Management Solutions",
++          "chapterDescription": "Guidelines for implementing password management solutions.",
++          "chapterType": "video",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 1,
++          "proficiency": 0
++        }
++      ]
++    },
++    {
++      "topicTitle": "Online Privacy",
++      "topicDescription": "A course that delves into the concept of online privacy and how to protect it.",
++      "order": 4,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Online Privacy",
++          "chapterDescription": "An overview of the concept of online privacy and its importance.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 2,
++          "proficiency": 0
++        },
++        {
++          "chapterTitle": "Evaluating Understanding of Online Privacy",
++          "chapterDescription": "A quiz to test your knowledge of online privacy.",
++          "chapterType": "assessment",
++          "order": 3,
++          "proficiency": 1
++        },
++        {
++          "chapterTitle": "Protecting Online Privacy Measures",
++          "chapterDescription": "Best practices for protecting your online privacy and personal information.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 4,
++          "proficiency": 2
++        },
++        {
++          "chapterTitle": "Assessing Privacy Protection Knowledge",
++          "chapterDescription": "A quiz to assess privacy protection knowledge.",
++          "chapterType": "assessment",
++          "order": 5,
++          "proficiency": 3
++        },
++        {
++          "chapterTitle": "Implementing Privacy Enhancements",
++          "chapterDescription": "Guidelines for implementing privacy enhancements.",
++          "chapterType": "video",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 1,
++          "proficiency": 0
++        }
++      ]
++    },
++    {
++      "topicTitle": "Software Updates",
++      "topicDescription": "Understanding the importance of software updates and best practices for managing them.",
++      "order": 5,
++      "chapters": [
++        {
++          "chapterTitle": "Introduction to Software Updates",
++          "chapterDescription": "An overview of the importance of software updates.",
++          "chapterType": "text",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupVideoURLs": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 2,
++          "proficiency": 0
++        },
++        {
++          "chapterTitle": "Testing Understanding of Software Updates",
++          "chapterDescription": "A quiz to test your knowledge of software updates best practices.",
++          "chapterType": "assessment",
++          "order": 3,
++          "proficiency": 1
++        },
++        {
++          "chapterTitle": "Implementing Software Update Procedures",
++          "chapterDescription": "Guidelines for implementing effective software update procedures.",
++          "chapterType": "video",
++          "controlGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "controlGroupImageURLs": [],
++          "experimentalGroupContent": {
++            "beginner": "",
++            "intermediate": "",
++            "expert": ""
++          },
++          "experimentalGroupImageURLs": [],
++          "order": 1,
++          "proficiency": 0
++        }
++      ]
++    }
++  ]
++}
+diff --git a/upload_collection_topics.py b/upload_collection_topics.py
+index 1bce709..01140e7 100644
+--- a/upload_collection_topics.py
++++ b/upload_collection_topics.py
+@@ -1,7 +1,7 @@
+ import re
++import json
+ import firebase_admin
+ from firebase_admin import credentials, firestore
+-import json
+ 
+ # Initialize Firebase
+ cred = credentials.Certificate("serviceAccountKey.json")
+@@ -10,56 +10,49 @@ db = firestore.client()
+ 
+ 
+ def to_snake_case(text):
+-    text = re.sub(r"[\s\-]+", " ", text)
+-    components = text.split(" ")
+-    return "_".join(x.lower() for x in components)
+-
++    text = re.sub(r"[\s\-]+", "_", text)
++    return "_".join(x.lower() for x in text.split("_"))
+ 
+-def to_camel_case(text):
+-    text = re.sub(r"[\-\.\s]", "_", text)
+-    components = text.split("_")
+-    return components[0] + "".join(x.title() for x in components[1:])
+ 
++def upload_data(file_path):
++    with open(file_path) as f:
++        data = json.load(f)
+ 
+-# def clean_quiz_title(title):
+-#     if "Quiz" in title:
+-#         return title.replace(":", "")
+-#     return title
++    for topic_details in data["topics"]:
++        topic_id = to_snake_case(topic_details["topicTitle"])
++        topic_ref = db.collection("topics").document(topic_id)
++        topic_ref.set(
++            {
++                "topicDescription": topic_details["topicDescription"],
++                "topicTitle": topic_details["topicTitle"],
++                "order": topic_details["order"],
++            }
++        )
+ 
++        chapters_ref = topic_ref.collection("chapters")
++        for chapter_details in topic_details["chapters"]:
++            chapter_id = to_snake_case(chapter_details["chapterTitle"])
++            chapter_ref = chapters_ref.document(chapter_id)
++
++            chapter_data = {
++                key: val
++                for key, val in chapter_details.items()
++                if key
++                in [
++                    "chapterType",
++                    "chapterDescription",
++                    "chapterTitle",
++                    "controlGroupContent",
++                    "experimentalGroupContent",
++                    "controlGroupImageURLs",
++                    "experimentalGroupImageURLs",
++                    "order",
++                    "proficiency",
++                ]
++            }
+ 
+-with open("data/topics5.json") as f:
+-    data = json.load(f)
++            chapter_ref.set(chapter_data)
+ 
+-for topic_details in data["topics"]:
+-    topic_id = to_snake_case(topic_details["topicTitle"])
+-    topic_ref = db.collection("topics").document(topic_id)
+-    topic_ref.set(
+-        {
+-            "topicDescription": topic_details["topicDescription"],
+-            "topicTitle": topic_details["topicTitle"],
+-            "order": topic_details["order"],
+-        }
+-    )
+ 
+-    chapters_ref = topic_ref.collection("chapters")
+-    for chapter_details in topic_details["chapters"]:
+-        # chapter_details["chapterTitle"] = clean_quiz_title(
+-        #     chapter_details["chapterTitle"]
+-        # )
+-        chapter_id = to_snake_case(chapter_details["chapterTitle"])
+-        chapter_ref = chapters_ref.document(chapter_id)
+-        chapter_ref.set(
+-            {
+-                "chapterType": chapter_details["chapterType"],
+-                "chapterDescription": chapter_details["chapterDescription"],
+-                "chapterTitle": chapter_details["chapterTitle"],
+-                "controlGroupContent": chapter_details["controlGroupContent"],
+-                "experimentalGroupContent": chapter_details["experimentalGroupContent"],
+-                "controlGroupImageURL": chapter_details["controlGroupImageURL"],
+-                "experimentalGroupImageURL": chapter_details[
+-                    "experimentalGroupImageURL"
+-                ],
+-                "order": chapter_details["order"],
+-                "proficiency": chapter_details["proficiency"],
+-            }
+-        )
++if __name__ == "__main__":
++    upload_data("data/topics6.json")
+-- 
+2.38.1.windows.1
+
