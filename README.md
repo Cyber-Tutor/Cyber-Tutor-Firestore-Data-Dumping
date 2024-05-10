@@ -15,4 +15,11 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 5) Get the serviceAccountKey.json from Firestore, or our GitHub wiki
-6) All downloaders and uploaders should work as expected using run (CTRL+F5, by default)
+6) The applicable commands are:
+```bash
+python download_collection_quizQuestions.py
+python download_collection_topics.py
+python upload_collect_demographicSurveyQuestions.py
+pytohn upload_collect_initialSurveyQuestions.py
+python upload_collection_quizQuestions.oy
+python upload_collection_topics.py```
