@@ -17,9 +17,9 @@ pip install -r requirements.txt
 5) Get the serviceAccountKey.json from Firestore, or our GitHub wiki
 6) The applicable commands are:
 ```bash
-python download_collection_quizQuestions.py
-python download_collection_topics.py
-python upload_collect_demographicSurveyQuestions.py
-pytohn upload_collect_initialSurveyQuestions.py
-python upload_collection_quizQuestions.oy
-python upload_collection_topics.py```
+python download_c_quizQuestions.py
+python download_c_topics.py
+python upload_c_demographicSurveyQuestions.py
+pytohn upload_c_initialSurveyQuestions.py
+python upload_c_quizQuestions.oy
+python upload_c_topics.py```
