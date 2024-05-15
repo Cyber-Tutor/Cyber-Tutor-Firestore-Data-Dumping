@@ -29,7 +29,9 @@ def upload_quiz_questions(input_file_path, db):
                 "isHumanWritten",
             ]
         }
-        db.collection("quizQuestions").add(question_data)
+        db.collection("quizQuestions").document(question["questionId"]).set(
+            question_data
+        )
 
 
 if __name__ == "__main__":
