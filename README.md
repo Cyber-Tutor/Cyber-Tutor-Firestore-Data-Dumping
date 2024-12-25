@@ -6,13 +6,13 @@
 python scripts/downloader.py
 ```
 
-![alt text](media/downloader.png)
+![screenshot of downloader dot py](media/downloader.png)
 
 ```bash
 python scripts/uploader.py
 ```
 
-![alt text](media/uploader.png)
+![screenshot of uploader dot py](media/uploader.png)
 
 ## Local Instance Instructions
 
